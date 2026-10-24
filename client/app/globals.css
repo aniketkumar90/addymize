@@ -1,0 +1,397 @@
+@import "tailwindcss";
+
+@layer base {
+  :root {
+    --bg-main: #073e4a;
+    --bg-surface: #0a4f5d;
+    --bg-surface-elevated: #0e6070;
+    --accent-gold: #F59E0B;
+    --accent-cyan: #22D3EE;
+    --accent-teal: #14B8A6;
+    --accent-purple: #A855F7;
+    --border-glass: rgba(255, 255, 255, 0.1);
+  }
+
+  body {
+    background-color: #073e4a;
+    color: #F1F5F9;
+    font-feature-settings: "cv02", "cv03", "cv04", "cv11";
+    overflow-x: hidden;
+    selection-background-color: #f59e0b;
+    selection-color: #073e4a;
+  }
+}
+
+/* Glassmorphism custom utilities */
+.glass-panel {
+  background: rgba(14, 20, 36, 0.65);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.glass-card {
+  background: rgba(17, 23, 40, 0.55);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.07);
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.glass-card:hover {
+  background: rgba(23, 31, 54, 0.7);
+  border-color: rgba(255, 255, 255, 0.16);
+  transform: translateY(-2px);
+  box-shadow: 0 20px 40px -15px rgba(0, 0, 0, 0.5);
+}
+
+.glass-pill {
+  background: rgba(255, 255, 255, 0.04);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+/* Ambient glow accents */
+.glow-gold {
+  box-shadow: 0 0 45px -10px rgba(245, 158, 11, 0.3);
+}
+
+.glow-cyan {
+  box-shadow: 0 0 45px -10px rgba(56, 189, 248, 0.3);
+}
+
+.glow-purple {
+  box-shadow: 0 0 45px -10px rgba(168, 85, 247, 0.3);
+}
+
+.glow-enterprise {
+  box-shadow: 0 0 50px -12px rgba(245, 158, 11, 0.35), inset 0 0 20px rgba(245, 158, 11, 0.06);
+}
+
+/* Gradient text helpers */
+.text-gradient-gold {
+  background: linear-gradient(135deg, #FFF7ED 0%, #FDE68A 50%, #F59E0B 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.text-gradient-cyan {
+  background: linear-gradient(135deg, #E0F2FE 0%, #38BDF8 70%, #0284C7 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.text-gradient-purple {
+  background: linear-gradient(135deg, #F3E8FF 0%, #C084FC 70%, #9333EA 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.text-gradient-hero {
+  background: linear-gradient(135deg, #FFFFFF 0%, #CBD5E1 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* Custom subtle scrollbar */
+::-webkit-scrollbar {
+  width: 7px;
+  height: 7px;
+}
+
+::-webkit-scrollbar-track {
+  background: #070A14;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #1E293B;
+  border-radius: 9999px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #334155;
+}
+
+/* Floating animation keyframes */
+@keyframes floatSlow {
+
+  0%,
+  100% {
+    transform: translateY(0px) rotate(0deg);
+  }
+
+  50% {
+    transform: translateY(-8px) rotate(0.5deg);
+  }
+}
+
+@keyframes pulseGlow {
+
+  0%,
+  100% {
+    opacity: 0.6;
+    transform: scale(1);
+  }
+
+  50% {
+    opacity: 0.9;
+    transform: scale(1.05);
+  }
+}
+
+.animate-float-slow {
+  animation: floatSlow 6s ease-in-out infinite;
+}
+
+.animate-float-reverse {
+  animation: floatSlow 7s ease-in-out infinite reverse;
+}
+
+.animate-pulse-glow {
+  animation: pulseGlow 8s ease-in-out infinite;
+}
+
+/* Auto Loop Marquee Scroll for Client Cards */
+@keyframes marqueeLeft {
+  0% {
+    transform: translateX(0%);
+  }
+
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+@keyframes marqueeRight {
+  0% {
+    transform: translateX(-50%);
+  }
+
+  100% {
+    transform: translateX(0%);
+  }
+}
+
+.animate-marquee-left {
+  display: flex;
+  width: max-content;
+  animation: marqueeLeft 45s linear infinite;
+}
+
+.animate-marquee-right {
+  display: flex;
+  width: max-content;
+  animation: marqueeRight 45s linear infinite;
+}
+
+.animate-marquee-left:hover,
+.animate-marquee-right:hover {
+  animation-play-state: paused;
+}
+
+/* ===================================================
+   UIVERSE.IO RADAR / SPATIAL CARD (by Spacious74)
+   =================================================== */
+.radar-card-outer {
+  width: 100%;
+  border-radius: 14px;
+  padding: 1px;
+  background: rgba(255, 255, 255, 0.08);
+  position: relative;
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.4s ease, background 0.4s ease;
+  box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.5);
+}
+
+.radar-card-outer:hover {
+  transform: translateY(-4px);
+  background: radial-gradient(circle 240px at 0% 0%, rgba(245, 158, 11, 0.75), rgba(255, 255, 255, 0.25) 45%, #091c24 85%);
+  box-shadow: 0 20px 40px -12px rgba(0, 0, 0, 0.8), 0 0 30px rgba(245, 158, 11, 0.25);
+}
+
+.radar-card-dot {
+  width: 6px;
+  aspect-ratio: 1;
+  position: absolute;
+  background-color: #ffffff;
+  box-shadow: 0 0 10px 1px #ffffff, 0 0 18px rgba(255, 255, 255, 0.6);
+  border-radius: 100px;
+  z-index: 20;
+  right: 10%;
+  top: 10%;
+  opacity: 0;
+  transform: scale(0.4);
+  transition: opacity 0.4s ease, transform 0.4s ease, background-color 0.4s ease, box-shadow 0.4s ease;
+  animation: moveRadarDot 6s linear infinite;
+  pointer-events: none;
+}
+
+.radar-card-outer:hover .radar-card-dot {
+  opacity: 1;
+  transform: scale(1);
+  background-color: #F59E0B;
+  box-shadow: 0 0 10px 2px #F59E0B, 0 0 18px rgba(245, 158, 11, 0.85);
+}
+
+@keyframes moveRadarDot {
+
+  0%,
+  100% {
+    top: 10%;
+    right: 10%;
+  }
+
+  25% {
+    top: 10%;
+    right: calc(100% - 32px);
+  }
+
+  50% {
+    top: calc(100% - 28px);
+    right: calc(100% - 32px);
+  }
+
+  75% {
+    top: calc(100% - 28px);
+    right: 10%;
+  }
+}
+
+.radar-card-inner {
+  z-index: 1;
+  width: 100%;
+  height: 100%;
+  min-height: 200px;
+  border-radius: 13px;
+  border: solid 1px rgba(255, 255, 255, 0.07);
+  background: radial-gradient(circle 280px at 0% 0%, #152731, #07171f 85%);
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  position: relative;
+  flex-direction: column;
+  color: #fff;
+  padding: 24px;
+  overflow: hidden;
+  backdrop-filter: blur(10px);
+  transition: border-color 0.4s ease, background 0.4s ease;
+}
+
+@media (min-width: 640px) {
+  .radar-card-inner {
+    min-height: 230px;
+  }
+}
+
+.radar-card-outer:hover .radar-card-inner {
+  border-color: rgba(245, 158, 11, 0.35);
+  background: radial-gradient(circle 280px at 0% 0%, #1f3b49, #07171f 85%);
+}
+
+.radar-card-ray {
+  width: 230px;
+  height: 48px;
+  border-radius: 100px;
+  position: absolute;
+  background-color: #ffffff;
+  opacity: 0;
+  box-shadow: 0 0 50px rgba(255, 255, 255, 0.9);
+  filter: blur(12px);
+  transform-origin: 10%;
+  top: 0%;
+  left: 0;
+  transform: rotate(40deg);
+  pointer-events: none;
+  transition: opacity 0.5s cubic-bezier(0.16, 1, 0.3, 1), background-color 0.5s ease, box-shadow 0.5s ease;
+}
+
+.radar-card-outer:hover .radar-card-ray {
+  opacity: 0.28;
+  background-color: #F59E0B;
+  box-shadow: 0 0 55px rgba(245, 158, 11, 0.95);
+}
+
+.radar-card-line {
+  position: absolute;
+  background-color: rgba(255, 255, 255, 0.08);
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.4s ease;
+}
+
+.radar-card-outer:hover .radar-card-line {
+  opacity: 1;
+}
+
+.radar-card-topl {
+  top: 3%;
+  left: 0;
+  width: 100%;
+  height: 1px;
+  background: linear-gradient(90deg, rgba(255, 255, 255, 0.35) 30%, rgba(255, 255, 255, 0.04) 70%);
+}
+
+.radar-card-bottoml {
+  bottom: 3%;
+  left: 0;
+  width: 100%;
+  height: 1px;
+}
+
+.radar-card-leftl {
+  left: 3%;
+  top: 0;
+  width: 1px;
+  height: 100%;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.35) 30%, rgba(255, 255, 255, 0.04) 70%);
+}
+
+.radar-card-rightl {
+  right: 3%;
+  top: 0;
+  width: 1px;
+  height: 100%;
+}
+
+.radar-card-text {
+  position: relative;
+  display: inline-block;
+  font-weight: 900;
+  font-size: clamp(2.35rem, 5.5vw, 3.25rem);
+  letter-spacing: -0.03em;
+  background: linear-gradient(45deg, #050d12 4%, #ffffff 50%, #475569 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+  line-height: 1;
+  z-index: 5;
+  transition: filter 0.35s ease;
+}
+
+.radar-card-text::after {
+  content: attr(data-value);
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, #FFF7ED 0%, #FDE68A 45%, #F59E0B 80%, #D97706 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+  opacity: 0;
+  transition: opacity 0.35s ease;
+  pointer-events: none;
+  filter: drop-shadow(0 0 16px rgba(245, 158, 11, 0.5));
+}
+
+.radar-card-outer:hover .radar-card-text {
+  background: linear-gradient(135deg, #FFF7ED 0%, #FDE68A 45%, #F59E0B 80%, #D97706 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+  filter: drop-shadow(0 0 16px rgba(245, 158, 11, 0.5));
+}
+
+.radar-card-outer:hover .radar-card-text::after {
+  opacity: 1;
+}
