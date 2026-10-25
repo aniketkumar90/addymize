@@ -74,33 +74,22 @@ export default function Navbar({ onBookDemoClick, onContactClick }) {
                         onClick={() => setSolutionsDropdown(false)}
                         className="flex flex-col p-2.5 rounded-xl hover:bg-white/[0.07] transition-all group"
                       >
-                        <span className="text-xs font-semibold text-amber-300 group-hover:text-amber-200 flex items-center gap-1.5">
-                          <span className="w-1.5 h-1.5 rounded-full bg-amber-400" />
-                          Modular Web Development
-                        </span>
-                        <span className="text-[11px] text-slate-400 mt-0.5">Scalable digital UI experiences</span>
-                      </a>
-                      <a
-                        href="#solutions"
-                        onClick={() => setSolutionsDropdown(false)}
-                        className="flex flex-col p-2.5 rounded-xl hover:bg-white/[0.07] transition-all group"
-                      >
                         <span className="text-xs font-semibold text-cyan-300 group-hover:text-cyan-200 flex items-center gap-1.5">
                           <span className="w-1.5 h-1.5 rounded-full bg-cyan-400" />
-                          Intelligent CRM Dashboards
+                          CRM — Customer Management
                         </span>
-                        <span className="text-[11px] text-slate-400 mt-0.5">Telemetry & automated pipelines</span>
+                        <span className="text-[11px] text-slate-400 mt-0.5">Pipelines, leads & customer dashboards</span>
                       </a>
                       <a
                         href="#solutions"
                         onClick={() => setSolutionsDropdown(false)}
                         className="flex flex-col p-2.5 rounded-xl hover:bg-white/[0.07] transition-all group"
                       >
-                        <span className="text-xs font-semibold text-purple-300 group-hover:text-purple-200 flex items-center gap-1.5">
-                          <span className="w-1.5 h-1.5 rounded-full bg-purple-400" />
-                          Digital Identity & E-commerce
+                        <span className="text-xs font-semibold text-amber-300 group-hover:text-amber-200 flex items-center gap-1.5">
+                          <span className="w-1.5 h-1.5 rounded-full bg-amber-400" />
+                          HRMS — Human Resource Management
                         </span>
-                        <span className="text-[11px] text-slate-400 mt-0.5">Biometrics & frictionless checkout</span>
+                        <span className="text-[11px] text-slate-400 mt-0.5">Payroll, attendance & employee management</span>
                       </a>
                     </motion.div>
                   )}

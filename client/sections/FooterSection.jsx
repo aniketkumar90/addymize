@@ -15,7 +15,7 @@ export default function FooterSection() {
           <div className="col-span-2 space-y-4">
             <Logo size="large" />
             <p className="text-xs text-slate-400 max-w-sm leading-relaxed mt-2">
-              Next-generation full-stack digital solutions and intelligent telemetry engineering. Empowering ambitious businesses from modular development to enterprise cloud identity.
+              Intelligent CRM and HRMS solutions for modern businesses. Manage customers, employees, payroll, and pipelines with one unified platform built for scale.
             </p>
             <div className="flex items-center gap-3 pt-2">
               {/* X / Twitter */}
@@ -77,22 +77,22 @@ export default function FooterSection() {
             <ul className="space-y-2 text-xs text-slate-400">
               <li>
                 <a href="#solutions" className="hover:text-amber-300 transition-colors">
-                  Modular Web Apps
+                  CRM Platform
                 </a>
               </li>
               <li>
                 <a href="#solutions" className="hover:text-amber-300 transition-colors">
-                  CRM Dashboards
+                  HRMS Platform
                 </a>
               </li>
               <li>
-                <a href="#solutions" className="hover:text-amber-300 transition-colors">
-                  Digital Identity
+                <a href="#features" className="hover:text-amber-300 transition-colors">
+                  Payroll Management
                 </a>
               </li>
               <li>
-                <a href="#solutions" className="hover:text-amber-300 transition-colors">
-                  Cloud Telemetry
+                <a href="#features" className="hover:text-amber-300 transition-colors">
+                  HR Analytics
                 </a>
               </li>
             </ul>

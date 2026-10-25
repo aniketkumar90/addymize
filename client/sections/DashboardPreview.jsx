@@ -103,7 +103,7 @@ export default function DashboardPreview({ onExploreClick }) {
             transition={{ delay: 0.1 }}
             className="text-3xl sm:text-4xl lg:text-5xl font-black text-white tracking-tight"
           >
-            Next-Gen Workforce & HR Infrastructure
+            Our HRMS Platform — Live Preview
           </motion.h2>
 
         </div>

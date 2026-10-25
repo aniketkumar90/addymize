@@ -1,5 +1,6 @@
 const Lead = require('../models/Lead');
 const { getDBStatus } = require('../config/db');
+const { sendDemoEmail } = require('../utils/mailer');
 
 const inMemoryLeads = [
   {
@@ -65,6 +66,11 @@ const createLead = async (req, res, next) => {
       };
       inMemoryLeads.unshift(savedLead);
     }
+
+    // Send email notification (non-blocking)
+    sendDemoEmail({ name, email, phone, company }).catch((err) =>
+      console.error('[Mailer Error - Demo]:', err.message)
+    );
 
     res.status(201).json({
       success: true,

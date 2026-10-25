@@ -1,5 +1,6 @@
 const Contact = require('../models/Contact');
 const { getDBStatus } = require('../config/db');
+const { sendContactEmail } = require('../utils/mailer');
 
 // In-memory array for demo/fallback when Mongo is not active
 const inMemoryContacts = [
@@ -62,6 +63,11 @@ const submitContact = async (req, res, next) => {
       };
       inMemoryContacts.unshift(savedContact);
     }
+
+    // Send email notification (non-blocking — won't fail the request if email fails)
+    sendContactEmail({ name, email, phone, company, message }).catch((err) =>
+      console.error('[Mailer Error - Contact]:', err.message)
+    );
 
     res.status(201).json({
       success: true,

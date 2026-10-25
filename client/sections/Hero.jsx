@@ -25,16 +25,16 @@ export default function Hero({ onGetStarted, onExploreSolutions }) {
 
             {/* Main Headline from Reference with selective gradient words */}
             <h1 className="text-4xl sm:text-6xl lg:text-[64px] font-black tracking-tight text-white leading-[1.08]">
-              Revolutionize{' '}
+              Streamline{' '}
               <span className="text-gradient-cyan">Your</span>
               <br />
-              <span className="text-gradient-gold">Digital</span>{' '}
-              <span className="text-gradient-purple">Presence</span>
+              <span className="text-gradient-gold">CRM</span>{' '}&amp;{' '}
+              <span className="text-gradient-purple">HRMS</span>
             </h1>
 
-            {/* Supporting Text from Reference */}
+            {/* Supporting Text */}
             <p className="text-base sm:text-lg text-slate-300 max-w-xl mx-auto lg:mx-0 font-normal leading-relaxed">
-              End-to-End Web Solutions for Modern Businesses — From CRM to Cloud Identity
+              Intelligent CRM &amp; HRMS solutions built for modern businesses — manage customers, employees, payroll, and pipelines in one powerful platform.
             </p>
 
             {/* CTA Buttons */}

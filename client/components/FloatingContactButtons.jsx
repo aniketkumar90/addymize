@@ -5,9 +5,9 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { Phone, PhoneCall, MessageCircle, X, ChevronUp, Sparkles } from 'lucide-react';
 
 export default function FloatingContactButtons({
-  phoneNumber = process.env.NEXT_PUBLIC_CONTACT_PHONE || '+919525971964',
-  whatsappNumber = process.env.NEXT_PUBLIC_WHATSAPP_NUMBER || '919525971964',
-  whatsappMessage = 'Hello Addymize team, I would like to inquire about your SaaS & digital solutions.',
+  phoneNumber = process.env.NEXT_PUBLIC_CONTACT_PHONE || '+918789414340',
+  whatsappNumber = process.env.NEXT_PUBLIC_WHATSAPP_NUMBER || '918789414340',
+  whatsappMessage = 'Hello Addymize team, I would like to inquire about your CRM & HRMS solutions.',
 }) {
   const [hoveredButton, setHoveredButton] = useState(null); // 'whatsapp' | 'call' | null
 

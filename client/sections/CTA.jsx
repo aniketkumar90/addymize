@@ -25,12 +25,12 @@ export default function CTA({ onStartProject, onBookDemo }) {
 
           {/* Heading */}
           <h2 className="text-3xl sm:text-5xl lg:text-6xl font-black text-white tracking-tight leading-tight max-w-3xl mx-auto">
-            Ready to Build Something <span className="text-gradient-gold">Exceptional</span>?
+            Ready to Transform Your <span className="text-gradient-gold">Business</span>?
           </h2>
 
           {/* Description */}
           <p className="text-slate-300 text-sm sm:text-lg max-w-xl mx-auto mt-4 mb-8 leading-relaxed">
-            Turn your ideas into scalable digital experiences. Partner with Addymize to engineer high-velocity Next.js platforms, intelligent dashboards, and robust digital identity.
+            Get started with our powerful CRM &amp; HRMS platform. Manage your customers, sales pipelines, employees, payroll, and analytics — all in one place.
           </p>
 
           {/* Action Buttons */}

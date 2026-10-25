@@ -25,19 +25,19 @@ export default function About({ onBookDemoClick }) {
           >
 
             <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black text-white leading-tight">
-              Technology Built Around Your <span className="text-gradient-gold">Growth</span>
+              CRM &amp; HRMS Built Around Your <span className="text-gradient-gold">Growth</span>
             </h2>
 
             <p className="text-sm sm:text-base text-slate-300 leading-relaxed">
-              We bridge the gap between heavy enterprise legacy software and cutting-edge digital experiences. From bespoke React & Next.js architectures to hardened CRM telemetry and biometric digital identity, every layer is built to convert, endure, and outshine.
+              We provide powerful CRM and HRMS platforms designed for modern businesses. From intelligent sales pipelines and customer dashboards to complete HR management — hiring, payroll, attendance, and performance — every feature is built to save time, reduce errors, and help your business scale faster.
             </p>
 
             <ul className="space-y-3 pt-2">
               {[
-                'Composable micro-frontends with instant page loads',
-                'Native Cloudinary media optimization & real-time CDNs',
-                'Enterprise-grade MongoDB data schemas with zero data lock-in',
-                'Dedicated 1-on-1 solutions architect for every deployment',
+                'Complete CRM with lead tracking, deal pipelines & customer analytics',
+                'Full-featured HRMS covering hiring, payroll & attendance',
+                'Role-based access control with 51-point permission system',
+                'Dedicated 1-on-1 support for every deployment',
               ].map((item, idx) => (
                 <li key={idx} className="flex items-center gap-3 text-xs sm:text-sm text-slate-300">
                   <div className="w-5 h-5 rounded-full bg-emerald-500/20 text-emerald-400 border border-emerald-400/30 flex items-center justify-center shrink-0">

@@ -11,6 +11,9 @@ import {
   Cpu,
   Share2,
   Lock,
+  Users,
+  Star,
+  CreditCard,
 } from 'lucide-react';
 import GlassCard from '@/components/GlassCard';
 import { FEATURES_DATA } from '@/lib/constants';
@@ -24,6 +27,9 @@ const iconMap = {
   Cpu,
   Share2,
   Lock,
+  Users,
+  Star,
+  CreditCard,
 };
 
 export default function Features() {
@@ -43,7 +49,7 @@ export default function Features() {
             transition={{ delay: 0.1 }}
             className="text-3xl sm:text-4xl lg:text-5xl font-black text-white"
           >
-            Powering Next-Gen Enterprise Stacks
+            Everything Your CRM &amp; HRMS Needs
           </motion.h2>
 
           <motion.p
@@ -53,7 +59,7 @@ export default function Features() {
             transition={{ delay: 0.2 }}
             className="text-slate-400 text-sm sm:text-base mt-3"
           >
-            Every component is engineered with military-grade precision, zero runtime latency, and modular micro-frontends.
+            Precision-engineered features for managing your customers, workforce, payroll, and analytics — all in one platform.
           </motion.p>
         </div>
 
