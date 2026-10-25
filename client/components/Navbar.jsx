@@ -67,29 +67,32 @@ export default function Navbar({ onBookDemoClick, onContactClick }) {
                       animate={{ opacity: 1, y: 0, scale: 1 }}
                       exit={{ opacity: 0, y: 6, scale: 0.96 }}
                       transition={{ duration: 0.18 }}
-                      className="absolute top-full left-0 mt-2 w-72 p-2 rounded-2xl bg-white border border-slate-200 backdrop-blur-2xl shadow-2xl z-50"
+                      className="absolute top-full left-0 mt-2 w-72 p-2 rounded-2xl bg-white border border-slate-200 shadow-[0_15px_35px_rgba(0,0,0,0.15)] z-50"
                     >
                       <a
                         href="#solutions"
                         onClick={() => setSolutionsDropdown(false)}
-                        className="flex flex-col p-2.5 rounded-xl hover:bg-slate-100 transition-all group"
+                        className="flex flex-col p-3 rounded-xl hover:bg-slate-100 transition-colors group"
                       >
-                        <span className="text-xs font-bold text-slate-900 group-hover:text-black flex items-center gap-1.5">
-                          <span className="w-1.5 h-1.5 rounded-full bg-cyan-600" />
+                        <span className="text-sm font-bold text-black">
                           CRM — Customer Management
                         </span>
-                        <span className="text-[11px] text-slate-600 mt-0.5">Pipelines, leads & customer dashboards</span>
+                        <span className="text-xs text-slate-700 mt-0.5">
+                          Pipelines, leads & customer dashboards
+                        </span>
                       </a>
+                      <div className="h-[1px] bg-slate-100 my-1 mx-2" />
                       <a
                         href="#solutions"
                         onClick={() => setSolutionsDropdown(false)}
-                        className="flex flex-col p-2.5 rounded-xl hover:bg-slate-100 transition-all group"
+                        className="flex flex-col p-3 rounded-xl hover:bg-slate-100 transition-colors group"
                       >
-                        <span className="text-xs font-bold text-slate-900 group-hover:text-black flex items-center gap-1.5">
-                          <span className="w-1.5 h-1.5 rounded-full bg-amber-600" />
+                        <span className="text-sm font-bold text-black">
                           HRMS — Human Resource Management
                         </span>
-                        <span className="text-[11px] text-slate-600 mt-0.5">Payroll, attendance & employee management</span>
+                        <span className="text-xs text-slate-700 mt-0.5">
+                          Payroll, attendance & employee management
+                        </span>
                       </a>
                     </motion.div>
                   )}
@@ -191,7 +194,7 @@ export default function Navbar({ onBookDemoClick, onContactClick }) {
                 ))}
               </div>
 
-              <div className="pt-2 border-t border-white/10 flex flex-col gap-2.5">
+              <div className="pt-2 border-t border-slate-200 flex flex-col gap-2.5">
                 <Button
                   variant="primary"
                   size="md"
@@ -199,18 +202,18 @@ export default function Navbar({ onBookDemoClick, onContactClick }) {
                     setMobileMenuOpen(false);
                     onBookDemoClick();
                   }}
-                  className="w-full font-bold shadow-[0_0_20px_rgba(245,158,11,0.4)]"
+                  className="w-full font-bold shadow-[0_4px_16px_rgba(245,158,11,0.35)]"
                 >
                   Book A Demo
                 </Button>
                 <Button
-                  variant="glass"
+                  variant="outline"
                   size="md"
                   onClick={() => {
                     setMobileMenuOpen(false);
                     onContactClick();
                   }}
-                  className="w-full text-xs"
+                  className="w-full text-xs font-semibold text-slate-800 border-slate-300 hover:bg-slate-100 hover:border-slate-400"
                 >
                   Contact Solutions Team
                 </Button>
