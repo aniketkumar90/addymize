@@ -25,7 +25,7 @@ export default function Pricing({ onSelectPlan }) {
             transition={{ delay: 0.1 }}
             className="text-3xl sm:text-4xl lg:text-5xl font-black text-white"
           >
-            Flexible Plans for Every Scale
+            Simple, Per-Employee Pricing
           </motion.h2>
 
           <motion.p
@@ -35,7 +35,7 @@ export default function Pricing({ onSelectPlan }) {
             transition={{ delay: 0.2 }}
             className="text-slate-400 text-sm sm:text-base mt-3"
           >
-            Choose the tier that matches your roadmap. Upgrade or customize at any time.
+            Pay only for active employees. Transparent CRM & HRMS pricing with 20% off on annual billing.
           </motion.p>
 
           {/* Monthly / Annual Toggle Switch from Reference */}
@@ -71,13 +71,10 @@ export default function Pricing({ onSelectPlan }) {
         {/* Pricing Cards Grid */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8 items-stretch pt-4">
           {PRICING_DATA.map((plan, index) => {
-            const isEnterprise = plan.id === 'enterprise';
-            const price =
-              plan.id === 'starter'
-                ? '—'
-                : billingCycle === 'annual'
-                ? `$${plan.annualPrice}`
-                : `$${plan.monthlyPrice}`;
+            const isPopular = plan.isPopular;
+            const isAnnual = billingCycle === 'annual';
+            const currentPrice = isAnnual ? plan.annualPrice : plan.monthlyPrice;
+            const originalMonthly = plan.monthlyPrice;
 
             return (
               <motion.div
@@ -91,58 +88,84 @@ export default function Pricing({ onSelectPlan }) {
                 {/* Visual container matching reference design */}
                 <div
                   className={`w-full rounded-3xl p-7 flex flex-col justify-between transition-all duration-300 relative overflow-hidden backdrop-blur-2xl ${
-                    isEnterprise
-                      ? 'bg-[#11172A]/90 border-2 border-amber-400/80 shadow-[0_0_50px_rgba(245,158,11,0.25)] hover:shadow-[0_0_65px_rgba(245,158,11,0.4)]'
-                      : 'bg-[#0B1020]/70 border border-white/10 hover:border-white/20 shadow-xl'
+                    isPopular
+                      ? 'bg-[#11172A]/95 border-2 border-amber-400 shadow-[0_0_50px_rgba(245,158,11,0.3)] hover:shadow-[0_0_65px_rgba(245,158,11,0.45)]'
+                      : 'bg-[#0B1020]/75 border border-white/10 hover:border-white/20 shadow-xl'
                   }`}
                 >
-                  {/* Top Badge for Enterprise card from reference */}
-                  {isEnterprise && (
+                  {/* Top Badge for Popular Growth card */}
+                  {isPopular && (
                     <div className="absolute top-4 right-6">
-                      <div className="px-3.5 py-1 rounded-full bg-gradient-to-r from-amber-400 to-amber-500 text-slate-950 text-xs font-bold shadow-[0_0_15px_rgba(245,158,11,0.5)] flex items-center gap-1">
-                        <Zap className="w-3 h-3 fill-current" />
-                        <span>Annual</span>
+                      <div className="px-3 py-1 rounded-full bg-gradient-to-r from-amber-400 to-amber-500 text-slate-950 text-xs font-black shadow-[0_0_15px_rgba(245,158,11,0.5)] flex items-center gap-1">
+                        <Sparkles className="w-3.5 h-3.5 fill-current" />
+                        <span>Most Popular</span>
                       </div>
                     </div>
                   )}
 
                   <div>
                     {/* Header */}
-                    <div className="mb-6">
+                    <div className="mb-5">
                       <h3
                         className={`text-2xl font-black ${
-                          isEnterprise ? 'text-amber-300' : 'text-white'
+                          isPopular ? 'text-amber-300' : 'text-white'
                         }`}
                       >
                         {plan.name}
                       </h3>
-                      <p className="text-xs text-slate-400 mt-0.5">{plan.subtitle}</p>
+                      <p className="text-xs text-slate-400 mt-1">{plan.subtitle}</p>
                     </div>
 
                     {/* Price Block */}
-                    <div className="my-6">
-                      <div className="flex items-baseline gap-1">
+                    <div className="my-5 p-4 rounded-2xl bg-white/[0.03] border border-white/[0.06]">
+                      <div className="flex items-baseline gap-1.5 flex-wrap">
                         <span
                           className={`text-4xl lg:text-5xl font-extrabold tracking-tight ${
-                            isEnterprise
+                            isPopular
                               ? 'text-amber-400 drop-shadow-[0_0_15px_rgba(245,158,11,0.4)]'
                               : 'text-white'
                           }`}
                         >
-                          {price}
+                          ₹{currentPrice}
                         </span>
-                        {plan.id !== 'starter' && (
-                          <span className="text-xs text-slate-400">/month</span>
+                        <span className="text-xs text-slate-300 font-medium">/employee/mo</span>
+
+                        {isAnnual && (
+                          <div className="ml-auto flex items-center gap-1.5">
+                            <span className="text-xs text-slate-500 line-through">
+                              ₹{originalMonthly}
+                            </span>
+                            <span className="text-[10px] font-bold px-2 py-0.5 rounded-full bg-emerald-500/20 text-emerald-400 border border-emerald-500/30">
+                              20% OFF
+                            </span>
+                          </div>
                         )}
                       </div>
-                      <div className="text-[11px] text-slate-400 mt-2 space-y-0.5">
-                        <p>{billingCycle === 'annual' ? plan.annualNote : plan.periodNote}</p>
-                        <p className="text-slate-500">{plan.description}</p>
+
+                      {/* Annual Calculation Breakdown */}
+                      <div className="text-[11px] text-slate-400 mt-3 pt-2.5 border-t border-white/[0.08] space-y-1">
+                        {isAnnual ? (
+                          <>
+                            <p className="text-amber-300/90 font-medium flex items-center justify-between">
+                              <span>Annual Billing:</span>
+                              <span className="font-bold text-white">₹{plan.annualTotal.toLocaleString('en-IN')}/employee/yr</span>
+                            </p>
+                            <p className="text-emerald-400/90 text-[10px]">
+                              🎉 You save ₹{(plan.originalAnnualTotal - plan.annualTotal).toLocaleString('en-IN')} per employee per year
+                            </p>
+                          </>
+                        ) : (
+                          <p className="text-slate-400 flex items-center justify-between">
+                            <span>Monthly Billing:</span>
+                            <span className="text-amber-400 text-[10px] font-semibold">Switch to Annual & Save 20%</span>
+                          </p>
+                        )}
+                        <p className="text-slate-500 text-[11px] pt-1">{plan.description}</p>
                       </div>
                     </div>
 
                     {/* Divider */}
-                    <div className="h-[1px] w-full bg-white/[0.08] my-6" />
+                    <div className="h-[1px] w-full bg-white/[0.08] my-5" />
 
                     {/* Features List */}
                     <ul className="space-y-3 mb-8">
@@ -150,7 +173,7 @@ export default function Pricing({ onSelectPlan }) {
                         <li key={fIdx} className="flex items-start gap-2.5 text-xs text-slate-300">
                           <div
                             className={`w-4 h-4 rounded-full flex items-center justify-center shrink-0 mt-0.5 ${
-                              isEnterprise
+                              isPopular
                                 ? 'bg-amber-400/20 text-amber-300'
                                 : 'bg-white/10 text-slate-300'
                             }`}
@@ -165,7 +188,7 @@ export default function Pricing({ onSelectPlan }) {
 
                   {/* CTA Button */}
                   <Button
-                    variant={isEnterprise ? 'primary' : 'glass'}
+                    variant={isPopular ? 'primary' : 'glass'}
                     size="md"
                     className="w-full font-bold tracking-wide"
                     onClick={() => onSelectPlan && onSelectPlan(plan)}

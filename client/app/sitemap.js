@@ -1,3 +1,5 @@
+export const dynamic = 'force-static';
+
 export default function sitemap() {
   const baseUrl = process.env.NEXT_PUBLIC_APP_URL || 'https://addymize.com';
   const lastModified = new Date();

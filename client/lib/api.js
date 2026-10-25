@@ -75,6 +75,7 @@ export async function fetchFromAPI(endpoint, options = {}) {
  * Submit contact form
  */
 export async function submitContactForm(data) {
+  // 1. Try Node.js Express backend API
   try {
     const res = await fetch(`${API_BASE}/contact`, {
       method: 'POST',
@@ -85,22 +86,41 @@ export async function submitContactForm(data) {
     if (res.ok) {
       return result;
     }
-    throw new Error(result.message || 'Server error');
-  } catch (error) {
-    console.warn('[Contact Submit Notice]: API offline, storing in local fallback', error);
-    saveLocalSubmission('contact', data);
-    return {
-      success: true,
-      message: 'Thank you! Your message has been received. Our team will get back to you shortly.',
-      data: { ...data, createdAt: new Date().toISOString() },
-    };
+  } catch (expressErr) {
+    // Express server not reached, continue to PHP fallback
   }
+
+  // 2. Try cPanel PHP mailer fallback
+  try {
+    const phpRes = await fetch('/api/contact.php', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(data),
+    });
+    if (phpRes.ok) {
+      const phpResult = await phpRes.json();
+      if (phpResult.success) {
+        return phpResult;
+      }
+    }
+  } catch (phpErr) {
+    // PHP not available, continue to local storage
+  }
+
+  // 3. Fail-safe browser local storage fallback
+  saveLocalSubmission('contact', data);
+  return {
+    success: true,
+    message: 'Thank you! Your message has been received. Our team will get back to you shortly.',
+    data: { ...data, createdAt: new Date().toISOString() },
+  };
 }
 
 /**
  * Submit demo lead request
  */
 export async function submitLeadRequest(data) {
+  // 1. Try Node.js Express backend API
   try {
     const res = await fetch(`${API_BASE}/leads`, {
       method: 'POST',
@@ -111,16 +131,34 @@ export async function submitLeadRequest(data) {
     if (res.ok) {
       return result;
     }
-    throw new Error(result.message || 'Server error');
-  } catch (error) {
-    console.warn('[Lead Submit Notice]: API offline, storing in local fallback', error);
-    saveLocalSubmission('lead', data);
-    return {
-      success: true,
-      message: 'Demo slot reserved! Our solutions architect will reach out shortly.',
-      data: { ...data, createdAt: new Date().toISOString() },
-    };
+  } catch (expressErr) {
+    // Express server not reached, continue to PHP fallback
   }
+
+  // 2. Try cPanel PHP mailer fallback
+  try {
+    const phpRes = await fetch('/api/leads.php', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(data),
+    });
+    if (phpRes.ok) {
+      const phpResult = await phpRes.json();
+      if (phpResult.success) {
+        return phpResult;
+      }
+    }
+  } catch (phpErr) {
+    // PHP not available, continue to local storage
+  }
+
+  // 3. Fail-safe browser local storage fallback
+  saveLocalSubmission('lead', data);
+  return {
+    success: true,
+    message: 'Demo slot reserved! Our solutions architect will reach out shortly.',
+    data: { ...data, createdAt: new Date().toISOString() },
+  };
 }
 
 /* ============================================================

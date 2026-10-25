@@ -1,0 +1,13 @@
+{
+  "name": "addymize",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Addymize Enterprise CRM & HRMS Platform",
+  "scripts": {
+    "build": "npm run build --prefix client",
+    "start": "npm run start --prefix client",
+    "client": "npm run dev --prefix client",
+    "server": "npm run start --prefix server",
+    "server:dev": "npm run dev --prefix server"
+  }
+}

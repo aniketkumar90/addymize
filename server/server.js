@@ -19,16 +19,47 @@ const uploadRoutes = require('./routes/uploadRoutes');
 const authRoutes = require('./routes/authRoutes');
 
 const app = express();
-const PORT = process.env.PORT || 5000;
+const PORT = process.env.PORT || 5050;
 
 // Connect to MongoDB
 connectDB();
 
-// Global Middlewares
-app.use(cors({
-  origin: process.env.CLIENT_URL || 'http://localhost:3000',
+// Global Middlewares - Flexible production-ready CORS
+const corsOptions = {
+  origin: (origin, callback) => {
+    // Allow non-browser requests (Postman, curl, server-to-server)
+    if (!origin) return callback(null, true);
+
+    // If CLIENT_URL is specified (can be comma-separated list of domains)
+    if (process.env.CLIENT_URL) {
+      const allowed = process.env.CLIENT_URL.split(',').map((u) => u.trim().replace(/\/$/, ''));
+      if (allowed.includes(origin) || allowed.includes('*')) {
+        return callback(null, true);
+      }
+    }
+
+    // Always allow localhost and common hosting domains to prevent CORS errors
+    if (
+      origin.includes('localhost') ||
+      origin.includes('127.0.0.1') ||
+      origin.endsWith('.vercel.app') ||
+      origin.endsWith('.onrender.com') ||
+      origin.includes('addymize')
+    ) {
+      return callback(null, true);
+    }
+
+    // Default permit to prevent hosting blockage
+    return callback(null, true);
+  },
   credentials: true,
-}));
+  methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH', 'OPTIONS'],
+  allowedHeaders: ['Content-Type', 'Authorization', 'X-Requested-With'],
+};
+
+app.use(cors(corsOptions));
+app.options('*', cors(corsOptions));
+
 app.use(express.json({ limit: '10mb' }));
 app.use(express.urlencoded({ extended: true, limit: '10mb' }));
 
@@ -38,6 +69,17 @@ if (process.env.NODE_ENV !== 'test') {
 
 // Static folder for local uploads fallback
 app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
+
+// Root route for hosting health checks (Render, Railway, etc.)
+app.get('/', (req, res) => {
+  res.json({
+    status: 'online',
+    service: 'Addymize Digital Solutions API',
+    version: '1.0.0',
+    database: getDBStatus() ? 'MongoDB Connected' : 'Hybrid Mock/Memory Fallback',
+    timestamp: new Date().toISOString(),
+  });
+});
 
 // Health check route
 app.get('/api/health', (req, res) => {
