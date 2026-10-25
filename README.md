@@ -1,6 +1,9 @@
-# Addymize — Next-Generation Digital Solutions & SaaS Platform
+# Trackolab — Intelligent CRM & HRMS Platform
 
-A full-stack modern enterprise web application built with Next.js, React, Tailwind CSS, Framer Motion, Node.js, Express, MongoDB, and Cloudinary. Designed with dark futuristic aesthetics, glassmorphism cards, glowing ambient lighting, interactive telemetry dashboards, and responsive layout hierarchy.
+A modern full-stack web platform built with Next.js (Frontend) and Express / Node.js (Backend). Designed for high-scale workforce management, lead tracking, payroll processing, and interactive dashboards.
+
+- **`client/`** — Next.js Frontend Application
+- **`server/`** — Node.js & Express API Backend Server
 
 ---
 

@@ -1,7 +1,7 @@
 {
-  "name": "addymize-server",
+  "name": "trackolab-server",
   "version": "1.0.0",
-  "description": "Addymize Digital Solutions Backend API",
+  "description": "Trackolab CRM & HRMS Backend API",
   "main": "server.js",
   "scripts": {
     "start": "node server.js",
