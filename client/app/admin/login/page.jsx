@@ -13,7 +13,6 @@ import {
   Loader2,
   Sparkles,
   ArrowLeft,
-  KeyRound,
 } from 'lucide-react';
 import Logo from '@/components/Logo';
 import { loginAdmin, getCurrentAdminUser } from '@/lib/api';
@@ -56,12 +55,6 @@ export default function AdminLoginPage() {
     } finally {
       setLoading(false);
     }
-  };
-
-  const fillDemoCredentials = () => {
-    setEmail('admin@gmail.com');
-    setPassword('admin@123');
-    setError('');
   };
 
   return (
@@ -183,18 +176,6 @@ export default function AdminLoginPage() {
               )}
             </button>
           </form>
-
-          {/* Quick Demo Fill Shortcut */}
-          <div className="mt-5 pt-4 border-t border-teal-300/15">
-            <button
-              type="button"
-              onClick={fillDemoCredentials}
-              className="w-full py-2 px-3 rounded-xl bg-white/[0.05] hover:bg-white/[0.1] border border-teal-300/20 text-xs font-semibold text-teal-200 flex items-center justify-center gap-2 transition-all cursor-pointer"
-            >
-              <KeyRound className="w-3.5 h-3.5 text-amber-300" />
-              <span>One-Click Fill Master Admin (admin@gmail.com)</span>
-            </button>
-          </div>
         </div>
 
         {/* Restricted Security Notice */}
