@@ -20,10 +20,9 @@ export default function FooterSection() {
             <div className="flex items-center gap-3 pt-2">
               {/* X / Twitter */}
               <a
-                href="https://twitter.com"
-                target="_blank"
-                rel="noreferrer"
-                className="w-8 h-8 rounded-full bg-white/[0.05] border border-white/10 flex items-center justify-center text-slate-400 hover:text-white hover:border-amber-400/40 transition-all"
+                href="#"
+                onClick={(e) => e.preventDefault()}
+                className="w-8 h-8 rounded-full bg-white/[0.05] border border-white/10 flex items-center justify-center text-slate-400 hover:text-white hover:border-amber-400/40 transition-all cursor-pointer"
                 aria-label="Twitter / X"
               >
                 <svg className="w-3.5 h-3.5 fill-current" viewBox="0 0 24 24">
@@ -32,10 +31,9 @@ export default function FooterSection() {
               </a>
               {/* LinkedIn */}
               <a
-                href="https://linkedin.com"
-                target="_blank"
-                rel="noreferrer"
-                className="w-8 h-8 rounded-full bg-white/[0.05] border border-white/10 flex items-center justify-center text-slate-400 hover:text-white hover:border-cyan-400/40 transition-all"
+                href="#"
+                onClick={(e) => e.preventDefault()}
+                className="w-8 h-8 rounded-full bg-white/[0.05] border border-white/10 flex items-center justify-center text-slate-400 hover:text-white hover:border-cyan-400/40 transition-all cursor-pointer"
                 aria-label="LinkedIn"
               >
                 <svg className="w-3.5 h-3.5 fill-current" viewBox="0 0 24 24">
@@ -44,10 +42,9 @@ export default function FooterSection() {
               </a>
               {/* Instagram */}
               <a
-                href="https://instagram.com"
-                target="_blank"
-                rel="noreferrer"
-                className="w-8 h-8 rounded-full bg-white/[0.05] border border-white/10 flex items-center justify-center text-slate-400 hover:text-white hover:border-pink-400/40 transition-all"
+                href="#"
+                onClick={(e) => e.preventDefault()}
+                className="w-8 h-8 rounded-full bg-white/[0.05] border border-white/10 flex items-center justify-center text-slate-400 hover:text-white hover:border-pink-400/40 transition-all cursor-pointer"
                 aria-label="Instagram"
               >
                 <svg className="w-3.5 h-3.5 fill-current" viewBox="0 0 24 24">
@@ -56,10 +53,9 @@ export default function FooterSection() {
               </a>
               {/* GitHub */}
               <a
-                href="https://github.com"
-                target="_blank"
-                rel="noreferrer"
-                className="w-8 h-8 rounded-full bg-white/[0.05] border border-white/10 flex items-center justify-center text-slate-400 hover:text-white hover:border-purple-400/40 transition-all"
+                href="#"
+                onClick={(e) => e.preventDefault()}
+                className="w-8 h-8 rounded-full bg-white/[0.05] border border-white/10 flex items-center justify-center text-slate-400 hover:text-white hover:border-purple-400/40 transition-all cursor-pointer"
                 aria-label="GitHub"
               >
                 <svg className="w-3.5 h-3.5 fill-current" viewBox="0 0 24 24">

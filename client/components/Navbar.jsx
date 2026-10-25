@@ -32,15 +32,15 @@ export default function Navbar({ onBookDemoClick, onContactClick }) {
           <nav
             className={`flex items-center justify-between px-4 sm:px-6 py-2.5 sm:py-3 rounded-full transition-all duration-300 border ${
               scrolled
-                ? 'bg-[#0A0E1C]/85 backdrop-blur-xl border-white/12 shadow-[0_10px_35px_rgba(0,0,0,0.6)]'
-                : 'bg-[#0B1020]/60 backdrop-blur-md border-white/10 shadow-[0_4px_25px_rgba(0,0,0,0.3)]'
+                ? 'bg-white/95 backdrop-blur-xl border-slate-200/90 shadow-[0_12px_40px_rgba(0,0,0,0.18)]'
+                : 'bg-white/95 backdrop-blur-md border-slate-200/80 shadow-[0_8px_30px_rgba(0,0,0,0.12)]'
             }`}
           >
             {/* Left: Brand Logo */}
             <Logo />
 
-            {/* Desktop Navigation Links */}
-            <div className="hidden md:flex items-center gap-1.5 lg:gap-3 text-sm font-medium text-slate-300">
+            {/* Desktop Navigation Links (Elements in Black/Dark Slate) */}
+            <div className="hidden md:flex items-center gap-1.5 lg:gap-3 text-sm font-semibold text-slate-900">
               {/* Solutions Dropdown */}
               <div
                 className="relative"
@@ -49,12 +49,12 @@ export default function Navbar({ onBookDemoClick, onContactClick }) {
               >
                 <a
                   href="#solutions"
-                  className="flex items-center gap-1 px-3 py-1.5 rounded-full hover:text-white hover:bg-white/[0.05] transition-all"
+                  className="flex items-center gap-1 px-3 py-1.5 rounded-full text-slate-900 hover:text-black hover:bg-slate-100/90 transition-all"
                 >
                   <span>Solutions</span>
                   <ChevronDown
                     className={`w-3.5 h-3.5 transition-transform duration-200 ${
-                      solutionsDropdown ? 'rotate-180 text-amber-400' : 'text-slate-400'
+                      solutionsDropdown ? 'rotate-180 text-amber-600' : 'text-slate-700'
                     }`}
                   />
                 </a>
@@ -67,29 +67,29 @@ export default function Navbar({ onBookDemoClick, onContactClick }) {
                       animate={{ opacity: 1, y: 0, scale: 1 }}
                       exit={{ opacity: 0, y: 6, scale: 0.96 }}
                       transition={{ duration: 0.18 }}
-                      className="absolute top-full left-0 mt-2 w-64 p-2 rounded-2xl bg-[#0F1528]/95 border border-white/15 backdrop-blur-2xl shadow-2xl z-50"
+                      className="absolute top-full left-0 mt-2 w-72 p-2 rounded-2xl bg-white border border-slate-200 backdrop-blur-2xl shadow-2xl z-50"
                     >
                       <a
                         href="#solutions"
                         onClick={() => setSolutionsDropdown(false)}
-                        className="flex flex-col p-2.5 rounded-xl hover:bg-white/[0.07] transition-all group"
+                        className="flex flex-col p-2.5 rounded-xl hover:bg-slate-100 transition-all group"
                       >
-                        <span className="text-xs font-semibold text-cyan-300 group-hover:text-cyan-200 flex items-center gap-1.5">
-                          <span className="w-1.5 h-1.5 rounded-full bg-cyan-400" />
+                        <span className="text-xs font-bold text-slate-900 group-hover:text-black flex items-center gap-1.5">
+                          <span className="w-1.5 h-1.5 rounded-full bg-cyan-600" />
                           CRM — Customer Management
                         </span>
-                        <span className="text-[11px] text-slate-400 mt-0.5">Pipelines, leads & customer dashboards</span>
+                        <span className="text-[11px] text-slate-600 mt-0.5">Pipelines, leads & customer dashboards</span>
                       </a>
                       <a
                         href="#solutions"
                         onClick={() => setSolutionsDropdown(false)}
-                        className="flex flex-col p-2.5 rounded-xl hover:bg-white/[0.07] transition-all group"
+                        className="flex flex-col p-2.5 rounded-xl hover:bg-slate-100 transition-all group"
                       >
-                        <span className="text-xs font-semibold text-amber-300 group-hover:text-amber-200 flex items-center gap-1.5">
-                          <span className="w-1.5 h-1.5 rounded-full bg-amber-400" />
+                        <span className="text-xs font-bold text-slate-900 group-hover:text-black flex items-center gap-1.5">
+                          <span className="w-1.5 h-1.5 rounded-full bg-amber-600" />
                           HRMS — Human Resource Management
                         </span>
-                        <span className="text-[11px] text-slate-400 mt-0.5">Payroll, attendance & employee management</span>
+                        <span className="text-[11px] text-slate-600 mt-0.5">Payroll, attendance & employee management</span>
                       </a>
                     </motion.div>
                   )}
@@ -99,37 +99,37 @@ export default function Navbar({ onBookDemoClick, onContactClick }) {
               {/* Standard Links */}
               <a
                 href="#features"
-                className="px-3 py-1.5 rounded-full hover:text-white hover:bg-white/[0.05] transition-all"
+                className="px-3 py-1.5 rounded-full text-slate-900 hover:text-black hover:bg-slate-100/90 transition-all"
               >
                 Features
               </a>
               <a
                 href="#pricing"
-                className="px-3 py-1.5 rounded-full hover:text-white hover:bg-white/[0.05] transition-all"
+                className="px-3 py-1.5 rounded-full text-slate-900 hover:text-black hover:bg-slate-100/90 transition-all"
               >
                 Pricing
               </a>
               <a
                 href="#case-studies"
-                className="px-3 py-1.5 rounded-full hover:text-white hover:bg-white/[0.05] transition-all"
+                className="px-3 py-1.5 rounded-full text-slate-900 hover:text-black hover:bg-slate-100/90 transition-all"
               >
                 Case Studies
               </a>
               <a
                 href="#blog"
-                className="px-3 py-1.5 rounded-full hover:text-white hover:bg-white/[0.05] transition-all"
+                className="px-3 py-1.5 rounded-full text-slate-900 hover:text-black hover:bg-slate-100/90 transition-all"
               >
                 Blog
               </a>
             </div>
 
-            {/* Right Action: Book A Demo (Desktop & Tablets >= 768px) */}
+            {/* Right Action: Book A Demo */}
             <div className="hidden md:flex items-center gap-2">
               <Button
                 variant="primary"
                 size="sm"
                 onClick={onBookDemoClick}
-                className="font-bold tracking-wide"
+                className="font-bold tracking-wide shadow-[0_4px_16px_rgba(245,158,11,0.35)]"
               >
                 Book A Demo
               </Button>
@@ -148,10 +148,10 @@ export default function Navbar({ onBookDemoClick, onContactClick }) {
               <button
                 type="button"
                 onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-                className="p-2 rounded-xl text-slate-200 hover:text-white bg-white/[0.06] hover:bg-white/10 border border-white/10 transition-colors"
+                className="p-2 rounded-xl text-slate-900 hover:text-black bg-slate-100 hover:bg-slate-200 border border-slate-300 transition-colors"
                 aria-label="Toggle Navigation Menu"
               >
-                {mobileMenuOpen ? <X className="w-5 h-5 text-amber-400" /> : <Menu className="w-5 h-5" />}
+                {mobileMenuOpen ? <X className="w-5 h-5 text-amber-600" /> : <Menu className="w-5 h-5" />}
               </button>
             </div>
           </nav>
@@ -168,7 +168,7 @@ export default function Navbar({ onBookDemoClick, onContactClick }) {
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
               onClick={() => setMobileMenuOpen(false)}
-              className="fixed inset-0 z-40 bg-black/60 backdrop-blur-sm md:hidden"
+              className="fixed inset-0 z-40 bg-black/50 backdrop-blur-sm md:hidden"
             />
 
             <motion.div
@@ -176,7 +176,7 @@ export default function Navbar({ onBookDemoClick, onContactClick }) {
               animate={{ opacity: 1, y: 0, scale: 1 }}
               exit={{ opacity: 0, y: -20, scale: 0.98 }}
               transition={{ duration: 0.2 }}
-              className="fixed inset-x-4 top-20 z-50 p-5 rounded-3xl bg-[#090D1C]/95 border border-white/15 backdrop-blur-2xl shadow-2xl flex flex-col gap-4 md:hidden max-h-[85vh] overflow-y-auto"
+              className="fixed inset-x-4 top-20 z-50 p-5 rounded-3xl bg-white/98 border border-slate-200 backdrop-blur-2xl shadow-2xl flex flex-col gap-4 md:hidden max-h-[85vh] overflow-y-auto"
             >
               <div className="flex flex-col gap-1.5">
                 {NAV_LINKS.map((link) => (
@@ -184,7 +184,7 @@ export default function Navbar({ onBookDemoClick, onContactClick }) {
                     key={link.label}
                     href={link.href}
                     onClick={() => setMobileMenuOpen(false)}
-                    className="px-4 py-2.5 rounded-xl text-base font-medium text-slate-200 hover:text-white hover:bg-white/10 active:bg-white/15 transition-all"
+                    className="px-4 py-2.5 rounded-xl text-base font-semibold text-slate-900 hover:text-black hover:bg-slate-100 active:bg-slate-200 transition-all"
                   >
                     {link.label}
                   </a>

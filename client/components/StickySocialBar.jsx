@@ -8,7 +8,7 @@ const SOCIAL_LINKS = [
     id: 'linkedin',
     name: 'LinkedIn',
     label: 'Connect on LinkedIn',
-    url: 'https://linkedin.com/company/addymize',
+    url: '#',
     color: '#0A66C2',
     hoverBg: 'hover:bg-[#0A66C2]/20 hover:border-[#0A66C2]/50 hover:text-[#38a6ff]',
     icon: (
@@ -21,7 +21,7 @@ const SOCIAL_LINKS = [
     id: 'twitter',
     name: 'X (Twitter)',
     label: 'Follow on X',
-    url: 'https://twitter.com/addymize',
+    url: '#',
     color: '#1DA1F2',
     hoverBg: 'hover:bg-white/15 hover:border-white/40 hover:text-white',
     icon: (
@@ -34,7 +34,7 @@ const SOCIAL_LINKS = [
     id: 'instagram',
     name: 'Instagram',
     label: 'Follow on Instagram',
-    url: 'https://instagram.com/addymize',
+    url: '#',
     color: '#E1306C',
     hoverBg: 'hover:bg-pink-500/20 hover:border-pink-500/50 hover:text-pink-300',
     icon: (
@@ -46,8 +46,8 @@ const SOCIAL_LINKS = [
   {
     id: 'facebook',
     name: 'Facebook',
-    label: 'Addymize on Facebook',
-    url: 'https://facebook.com/addymize',
+    label: 'Trackolab on Facebook',
+    url: '#',
     color: '#1877F2',
     hoverBg: 'hover:bg-[#1877F2]/20 hover:border-[#1877F2]/50 hover:text-[#5295f7]',
     icon: (
@@ -60,7 +60,7 @@ const SOCIAL_LINKS = [
     id: 'youtube',
     name: 'YouTube',
     label: 'Watch on YouTube',
-    url: 'https://youtube.com/@addymize',
+    url: '#',
     color: '#FF0000',
     hoverBg: 'hover:bg-red-500/20 hover:border-red-500/50 hover:text-red-400',
     icon: (
@@ -72,8 +72,8 @@ const SOCIAL_LINKS = [
   {
     id: 'github',
     name: 'GitHub',
-    label: 'Open Source Code',
-    url: 'https://github.com/addymize',
+    label: 'GitHub Code',
+    url: '#',
     color: '#ffffff',
     hoverBg: 'hover:bg-white/15 hover:border-white/40 hover:text-amber-300',
     icon: (
@@ -131,9 +131,8 @@ export default function StickySocialBar() {
 
               {/* Social Icon Button */}
               <motion.a
-                href={item.url}
-                target="_blank"
-                rel="noopener noreferrer"
+                href="#"
+                onClick={(e) => e.preventDefault()}
                 aria-label={item.label}
                 whileHover={{ scale: 1.15 }}
                 whileTap={{ scale: 0.9 }}
