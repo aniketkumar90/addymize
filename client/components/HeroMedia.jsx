@@ -1,42 +1,17 @@
 'use client';
 
-import React, { useState } from 'react';
-import { motion } from 'framer-motion';
-import { Star, Play, Pause, Layers, ShoppingBag, ShieldCheck, Sparkles, CheckCircle2 } from 'lucide-react';
+import React from 'react';
+import { Star, Layers, ShoppingBag } from 'lucide-react';
 import DashboardMockup from './DashboardMockup';
 import FloatingCard from './FloatingCard';
 
 export default function HeroMedia() {
-  const [mediaMode, setMediaMode] = useState('interactive'); // 'interactive' | 'video'
-  const [isPlaying, setIsPlaying] = useState(true);
-
   return (
     <div className="relative w-full flex flex-col items-center justify-center">
-      {/* Mode Switcher Pill */}
-      <div className="flex items-center gap-1.5 p-1 rounded-full bg-[#0D1324]/80 border border-white/10 backdrop-blur-xl mb-4 text-xs z-30 shadow-lg">
-        <button
-          type="button"
-          onClick={() => setMediaMode('interactive')}
-          className={`px-3.5 py-1 rounded-full transition-all duration-300 font-medium ${
-            mediaMode === 'interactive'
-              ? 'bg-amber-400 text-slate-950 font-bold shadow-[0_0_15px_rgba(245,158,11,0.5)]'
-              : 'text-slate-300 hover:text-white'
-          }`}
-        >
-          Live Interactive UI
-        </button>
-        <button
-          type="button"
-          onClick={() => setMediaMode('video')}
-          className={`px-3.5 py-1 rounded-full transition-all duration-300 font-medium flex items-center gap-1.5 ${
-            mediaMode === 'video'
-              ? 'bg-cyan-400 text-slate-950 font-bold shadow-[0_0_15px_rgba(56,189,248,0.5)]'
-              : 'text-slate-300 hover:text-white'
-          }`}
-        >
-          <Play className="w-3 h-3 fill-current" />
-          Motion Video Preview
-        </button>
+      {/* Live Interactive UI Tag */}
+      <div className="flex items-center gap-2 px-3.5 py-1 rounded-full bg-[#0D1324]/80 border border-white/10 backdrop-blur-xl mb-4 text-xs font-semibold text-amber-300 shadow-lg select-none">
+        <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
+        <span>Live Interactive UI</span>
       </div>
 
       {/* Main Container */}
@@ -72,7 +47,7 @@ export default function HeroMedia() {
           </div>
         </FloatingCard>
 
-        {/* Floating Badge 3: User Avatar badge "Addy Ruse" */}
+        {/* Floating Badge 3: User Avatar badge */}
         <FloatingCard
           className="-top-3 left-2 sm:left-12 scale-90 sm:scale-100"
           delay={1.2}
@@ -80,10 +55,10 @@ export default function HeroMedia() {
           yOffset={8}
         >
           <div className="hidden sm:flex items-center gap-2 px-2.5 py-1 rounded-full bg-[#0D1326]/90 border border-white/15 text-[11px]">
-            <div className="w-5 h-5 rounded-full bg-gradient-to-r from-purple-500 to-indigo-500 flex items-center justify-center text-[9px] font-bold">
-              AR
+            <div className="w-5 h-5 rounded-full bg-gradient-to-r from-amber-500 to-orange-500 flex items-center justify-center text-[9px] font-bold text-black">
+              TL
             </div>
-            <span className="text-slate-200 font-medium">Addy Ruse</span>
+            <span className="text-slate-200 font-medium">Tracko Team</span>
             <span className="w-1.5 h-1.5 rounded-full bg-emerald-400" />
           </div>
         </FloatingCard>
@@ -106,26 +81,8 @@ export default function HeroMedia() {
           </div>
         </FloatingCard>
 
-        {/* Display Active Mode */}
-        {mediaMode === 'interactive' ? (
-          <DashboardMockup />
-        ) : (
-          <div className="relative rounded-[24px] overflow-hidden border border-white/20 shadow-[0_20px_50px_rgba(0,0,0,0.8)] bg-[#090D1A]">
-            <div className="absolute -inset-1 rounded-[26px] bg-gradient-to-r from-cyan-500/30 via-purple-500/30 to-amber-500/30 blur-lg" />
-            <video
-              src="/videos/hero-preview.mp4"
-              autoPlay
-              loop
-              muted
-              playsInline
-              className="relative z-10 w-full h-auto rounded-[24px] object-cover"
-            />
-            <div className="absolute bottom-3 right-3 z-20 px-3 py-1 rounded-full bg-black/60 backdrop-blur-md text-[11px] text-white border border-white/20 flex items-center gap-1.5">
-              <span className="w-2 h-2 rounded-full bg-rose-500 animate-pulse" />
-              Reference Animation Video
-            </div>
-          </div>
-        )}
+        {/* Display Active Dashboard Mockup */}
+        <DashboardMockup />
       </div>
     </div>
   );
