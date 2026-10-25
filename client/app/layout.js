@@ -9,28 +9,26 @@ const jakarta = Plus_Jakarta_Sans({
 });
 
 export const metadata = {
-  metadataBase: new URL(process.env.NEXT_PUBLIC_APP_URL || 'https://addymize.com'),
+  metadataBase: new URL(process.env.NEXT_PUBLIC_APP_URL || 'https://trackolab.com'),
   title: {
-    default: "Addymize | Revolutionize Your Digital Presence — Modern SaaS & Web Solutions",
-    template: "%s | Addymize",
+    default: "Trackolab | Intelligent CRM & HRMS Platform for Modern Businesses",
+    template: "%s | Trackolab",
   },
   description:
-    "End-to-End Web Solutions for Modern Businesses — From Modular Web Development and Intelligent CRM Dashboards to Digital Identity & Cloud Telemetry.",
+    "Trackolab provides powerful CRM & HRMS solutions for modern businesses — manage leads, pipelines, employees, payroll, and attendance in one unified platform.",
   keywords: [
-    "Addymize",
-    "Modular Web Development",
-    "Intelligent CRM Dashboards",
-    "Digital Identity",
-    "Cloud Telemetry",
-    "SaaS Platform",
-    "Next.js Web Solutions",
-    "Composable Architecture",
+    "Trackolab",
+    "CRM System",
+    "HRMS Platform",
+    "Payroll Management",
+    "Lead Management",
+    "Attendance Tracking",
     "Enterprise CRM",
-    "High-Performance Web Apps",
+    "Workforce Management",
   ],
-  authors: [{ name: "Addymize Solutions", url: "https://addymize.com" }],
-  creator: "Addymize Solutions",
-  publisher: "Addymize Solutions",
+  authors: [{ name: "Trackolab", url: "https://trackolab.com" }],
+  creator: "Trackolab",
+  publisher: "Trackolab",
   alternates: {
     canonical: "/",
   },
@@ -46,17 +44,17 @@ export const metadata = {
     },
   },
   openGraph: {
-    title: "Addymize | Revolutionize Your Digital Presence",
+    title: "Trackolab | Intelligent CRM & HRMS Platform",
     description:
-      "End-to-End Web Solutions for Modern Businesses — From Modular Web Development to Intelligent CRM Dashboards & Cloud Identity.",
-    url: "https://addymize.com",
-    siteName: "Addymize",
+      "All-in-one CRM & HRMS platform to streamline leads, sales pipelines, payroll, and employee management.",
+    url: "https://trackolab.com",
+    siteName: "Trackolab",
     images: [
       {
-        url: "/images/dashboard-feature.png",
+        url: "/images/trackolab-logo.png",
         width: 1200,
         height: 630,
-        alt: "Addymize SaaS & CRM Platform Preview",
+        alt: "Trackolab CRM & HRMS Platform Preview",
       },
     ],
     locale: "en_US",
@@ -64,16 +62,16 @@ export const metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Addymize | Revolutionize Your Digital Presence",
+    title: "Trackolab | Intelligent CRM & HRMS Platform",
     description:
-      "Next-gen web development, intelligent CRM dashboards, and digital identity platforms.",
-    images: ["/images/dashboard-feature.png"],
-    creator: "@addymize",
+      "All-in-one CRM & HRMS platform to streamline leads, sales pipelines, payroll, and employee management.",
+    images: ["/images/trackolab-logo.png"],
+    creator: "@trackolab",
   },
   icons: {
-    icon: "/images/logo.png",
-    shortcut: "/images/logo.png",
-    apple: "/images/logo.png",
+    icon: "/images/trackolab-logo.png",
+    shortcut: "/images/trackolab-logo.png",
+    apple: "/images/trackolab-logo.png",
   },
   category: "technology",
 };
@@ -83,12 +81,12 @@ const jsonLd = {
   "@graph": [
     {
       "@type": "Organization",
-      "@id": "https://addymize.com/#organization",
-      name: "Addymize Solutions",
-      url: "https://addymize.com",
-      logo: "https://addymize.com/images/logo.png",
+      "@id": "https://trackolab.com/#organization",
+      name: "Trackolab",
+      url: "https://trackolab.com",
+      logo: "https://trackolab.com/images/trackolab-logo.png",
       description:
-        "End-to-End Web Solutions for Modern Businesses — From Modular Development and Intelligent CRM Dashboards to Digital Identity & Cloud Telemetry.",
+        "Intelligent CRM and HRMS solutions for modern businesses.",
       sameAs: [
         "https://twitter.com",
         "https://linkedin.com",
@@ -98,25 +96,25 @@ const jsonLd = {
     },
     {
       "@type": "WebSite",
-      "@id": "https://addymize.com/#website",
-      url: "https://addymize.com",
-      name: "Addymize",
+      "@id": "https://trackolab.com/#website",
+      url: "https://trackolab.com",
+      name: "Trackolab",
       publisher: {
-        "@id": "https://addymize.com/#organization",
+        "@id": "https://trackolab.com/#organization",
       },
       inLanguage: "en-US",
     },
     {
       "@type": "SoftwareApplication",
-      name: "Addymize Platform",
+      name: "Trackolab CRM & HRMS",
       applicationCategory: "BusinessApplication",
       operatingSystem: "Web-based",
       description:
-        "Modular Web Architecture, Intelligent CRM Dashboards, and Digital Identity Systems for modern enterprises.",
+        "Intelligent CRM & HRMS Platform for modern enterprises.",
       offers: {
         "@type": "Offer",
-        price: "0",
-        priceCurrency: "USD",
+        price: "99",
+        priceCurrency: "INR",
       },
     },
   ],

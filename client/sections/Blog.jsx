@@ -91,7 +91,7 @@ export default function Blog({ onReadArticle }) {
                         <User className="w-3.5 h-3.5" />
                       </div>
                       <span className="text-xs font-medium text-slate-300">
-                        {typeof post.author === 'string' ? post.author : post.author?.name || 'Addymize Architect'}
+                        {typeof post.author === 'string' ? post.author : post.author?.name || 'Trackolab Architect'}
                       </span>
                     </div>
                     <span className="text-[11px] text-slate-400">

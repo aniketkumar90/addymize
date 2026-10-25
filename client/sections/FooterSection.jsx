@@ -169,7 +169,7 @@ export default function FooterSection() {
         {/* Bottom Bar matching reference layout */}
         <div className="pt-8 border-t border-teal-300/15 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-slate-400">
           <div>
-            © 2026 Addymize Solutions. All rights reserved.
+            © 2026 Trackolab. All rights reserved.
           </div>
 
           <div className="flex items-center gap-6">

@@ -77,7 +77,7 @@ export default function Contact() {
               </div>
               <h3 className="text-2xl font-bold text-white">Inquiry Received Successfully!</h3>
               <p className="text-sm text-slate-300 max-w-md mx-auto">
-                Thank you for reaching out to Addymize. Our principal engineering architect has received your submission and will contact you within 24 hours.
+                Thank you for reaching out to Trackolab. Our principal engineering architect has received your submission and will contact you within 24 hours.
               </p>
               <Button
                 variant="glass"

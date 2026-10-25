@@ -34,7 +34,7 @@ export default function CaseStudies({ onSelectCase }) {
             transition={{ delay: 0.2 }}
             className="text-slate-400 text-sm sm:text-base mt-3"
           >
-            How top tier brands harness Addymize architectures to break transaction records and automate critical digital operations.
+            How top tier brands harness Trackolab architectures to break transaction records and automate critical digital operations.
           </motion.p>
         </div>
 
