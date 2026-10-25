@@ -51,8 +51,8 @@ export default function Home() {
         {/* 4-Column Stats Card Bar */}
         <StatsCard />
 
-        {/* Our Clients & Enterprise Partners - Auto Loop Marquee Cards */}
-        <OurClients />
+        {/* Our Clients & Enterprise Partners - Auto Loop Marquee Cards (Commented Out) */}
+        {/* <OurClients /> */}
 
         {/* Dedicated Interactive Dashboard Preview */}
         <DashboardPreview onExploreClick={() => setDemoModalOpen(true)} />

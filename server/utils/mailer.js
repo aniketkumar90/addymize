@@ -1,21 +1,51 @@
 const nodemailer = require('nodemailer');
 
-// Gmail transporter using App Password
-const transporter = nodemailer.createTransport({
-  service: 'gmail',
-  auth: {
-    user: process.env.EMAIL_USER,
-    pass: process.env.EMAIL_PASS,
-  },
-});
+// Dynamic transporter supporting both Gmail/Google Workspace and Custom Domain SMTP (cPanel/Hostinger/Zoho)
+const getTransporter = () => {
+  if (process.env.SMTP_HOST) {
+    return nodemailer.createTransport({
+      host: process.env.SMTP_HOST,
+      port: Number(process.env.SMTP_PORT) || 465,
+      secure: process.env.SMTP_SECURE !== 'false',
+      auth: {
+        user: process.env.EMAIL_USER,
+        pass: process.env.EMAIL_PASS,
+      },
+    });
+  }
+
+  return nodemailer.createTransport({
+    service: 'gmail',
+    auth: {
+      user: process.env.EMAIL_USER,
+      pass: process.env.EMAIL_PASS,
+    },
+  });
+};
+
+const isConfigured = () => {
+  const user = process.env.EMAIL_USER;
+  const pass = process.env.EMAIL_PASS;
+  if (!user || !pass) return false;
+  if (user.includes('your_gmail') || pass.includes('your_gmail')) return false;
+  return true;
+};
 
 /**
  * Send contact form notification email to admin
  */
 const sendContactEmail = async ({ name, email, phone, company, message }) => {
+  if (!isConfigured()) {
+    console.warn('[Mailer] EMAIL_USER / EMAIL_PASS not set in server/.env — skipping email.');
+    return;
+  }
+
+  const transporter = getTransporter();
+  const recipient = process.env.EMAIL_TO || process.env.EMAIL_USER;
+
   const mailOptions = {
     from: `"Addymize Website" <${process.env.EMAIL_USER}>`,
-    to: process.env.EMAIL_TO,
+    to: recipient,
     subject: `📩 New Contact Form Submission — ${name}`,
     html: `
       <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; background: #0a0e1c; color: #e2e8f0; border-radius: 12px; overflow: hidden;">
@@ -92,9 +122,17 @@ const sendContactEmail = async ({ name, email, phone, company, message }) => {
  * Send demo request notification email to admin
  */
 const sendDemoEmail = async ({ name, email, phone, company }) => {
+  if (!isConfigured()) {
+    console.warn('[Mailer] EMAIL_USER / EMAIL_PASS not set in server/.env — skipping email.');
+    return;
+  }
+
+  const transporter = getTransporter();
+  const recipient = process.env.EMAIL_TO || process.env.EMAIL_USER;
+
   const mailOptions = {
     from: `"Addymize Website" <${process.env.EMAIL_USER}>`,
-    to: process.env.EMAIL_TO,
+    to: recipient,
     subject: `🚀 New Demo Request — ${name}`,
     html: `
       <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; background: #0a0e1c; color: #e2e8f0; border-radius: 12px; overflow: hidden;">
