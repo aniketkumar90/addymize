@@ -1,18 +1,26 @@
 'use client';
 
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 
 export default function IntroVideoPreloader({ onFinish }) {
-  const [isVisible, setIsVisible] = useState(true);
+  const [isVisible, setIsVisible] = React.useState(true);
   const videoRef = useRef(null);
+
+  const enableAudio = () => {
+    if (videoRef.current) {
+      videoRef.current.muted = false;
+      videoRef.current.volume = 1.0;
+      videoRef.current.play().catch(() => {});
+    }
+  };
 
   useEffect(() => {
     // Lock body scrolling while intro video is playing
     const originalOverflow = document.body.style.overflow;
     document.body.style.overflow = 'hidden';
 
-    // Start video playback with volume on (auto on)
+    // Start video playback with volume auto ON (unmuted, 100% volume)
     if (videoRef.current) {
       videoRef.current.muted = false;
       videoRef.current.volume = 1.0;
@@ -20,37 +28,30 @@ export default function IntroVideoPreloader({ onFinish }) {
       const playPromise = videoRef.current.play();
       if (playPromise !== undefined) {
         playPromise.catch(() => {
-          // If browser autoplay policy blocks unmuted autoplay without prior gesture,
-          // start muted immediately and unmute on the very first touch/click/key
+          // If browser restricts unmuted autoplay before first gesture,
+          // play momentarily so video doesn't stall, and unmute on first gesture
           if (videoRef.current) {
             videoRef.current.muted = true;
-            videoRef.current.play().catch(() => { });
+            videoRef.current.play().catch(() => {});
           }
         });
       }
     }
 
-    // Auto unmute immediately on any user gesture if browser blocked unmuted start
-    const enableAudio = () => {
-      if (videoRef.current) {
-        videoRef.current.muted = false;
-        videoRef.current.volume = 1.0;
-      }
-      window.removeEventListener('click', enableAudio);
-      window.removeEventListener('touchstart', enableAudio);
-      window.removeEventListener('keydown', enableAudio);
-    };
+    // Auto-unmute on any touch, click, scroll or keypress anywhere on screen
     window.addEventListener('click', enableAudio, { passive: true });
     window.addEventListener('touchstart', enableAudio, { passive: true });
+    window.addEventListener('pointerdown', enableAudio, { passive: true });
     window.addEventListener('keydown', enableAudio, { passive: true });
+    window.addEventListener('scroll', enableAudio, { passive: true });
 
-    // Safety timeout: If video stalls or finishes, reveal web
+    // Safety timeout: transition smoothly to main website when video reaches end (~10.2s)
     const timer = setTimeout(() => {
       handleComplete();
     }, 10500);
 
     const handleKeyDown = (e) => {
-      if (e.key === 'Escape' || e.key === ' ') {
+      if (e.key === 'Escape') {
         handleComplete();
       }
     };
@@ -62,6 +63,9 @@ export default function IntroVideoPreloader({ onFinish }) {
       window.removeEventListener('keydown', handleKeyDown);
       window.removeEventListener('click', enableAudio);
       window.removeEventListener('touchstart', enableAudio);
+      window.removeEventListener('pointerdown', enableAudio);
+      window.removeEventListener('keydown', enableAudio);
+      window.removeEventListener('scroll', enableAudio);
     };
   }, []);
 
@@ -83,9 +87,15 @@ export default function IntroVideoPreloader({ onFinish }) {
             opacity: 0,
             transition: { duration: 0.6, ease: 'easeInOut' },
           }}
+          onClick={enableAudio}
+          onTouchStart={enableAudio}
           className="fixed inset-0 z-[99999] w-screen h-screen bg-white overflow-hidden select-none flex items-center justify-center m-0 p-0"
         >
-          {/* Fullscreen Video with volume auto ON */}
+          {/* Responsive Video:
+              - Mobile / Phone View: 'object-contain' so 100% of the 16:9 video is visible without cropping
+              - Desktop / Web View: 'md:object-cover md:scale-[1.03]' so it fills edge-to-edge seamlessly
+              - Volume is auto ON, no mute/band options shown
+          */}
           <video
             ref={videoRef}
             src="/videos/trackolab-intro.mp4"
@@ -93,19 +103,11 @@ export default function IntroVideoPreloader({ onFinish }) {
             playsInline
             preload="auto"
             onEnded={handleComplete}
-            className="w-full h-full object-cover scale-[1.03] block m-0 p-0 border-none outline-none"
+            className="w-full h-full object-contain md:object-cover md:scale-[1.03] block m-0 p-0 border-none outline-none bg-white"
           />
-
-          {/* Minimalist Skip Button */}
-          <button
-            type="button"
-            onClick={handleComplete}
-            className="absolute top-5 right-5 z-50 px-4 py-1.5 rounded-full bg-black/[0.08] hover:bg-black/[0.16] text-slate-800 hover:text-black text-xs font-semibold backdrop-blur-md border border-black/10 transition-all cursor-pointer shadow-sm active:scale-95"
-          >
-            Skip
-          </button>
         </motion.div>
       )}
     </AnimatePresence>
   );
 }
+
