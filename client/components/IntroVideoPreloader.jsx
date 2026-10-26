@@ -12,16 +12,37 @@ export default function IntroVideoPreloader({ onFinish }) {
     const originalOverflow = document.body.style.overflow;
     document.body.style.overflow = 'hidden';
 
-    // Start video playback immediately
+    // Start video playback with volume on (auto on)
     if (videoRef.current) {
-      videoRef.current.play().catch(() => {
-        // Fallback in case of browser power saver
-        if (videoRef.current) {
-          videoRef.current.muted = true;
-          videoRef.current.play().catch(() => {});
-        }
-      });
+      videoRef.current.muted = false;
+      videoRef.current.volume = 1.0;
+
+      const playPromise = videoRef.current.play();
+      if (playPromise !== undefined) {
+        playPromise.catch(() => {
+          // If browser autoplay policy blocks unmuted autoplay without prior gesture,
+          // start muted immediately and unmute on the very first touch/click/key
+          if (videoRef.current) {
+            videoRef.current.muted = true;
+            videoRef.current.play().catch(() => {});
+          }
+        });
+      }
     }
+
+    // Auto unmute immediately on any user gesture if browser blocked unmuted start
+    const enableAudio = () => {
+      if (videoRef.current) {
+        videoRef.current.muted = false;
+        videoRef.current.volume = 1.0;
+      }
+      window.removeEventListener('click', enableAudio);
+      window.removeEventListener('touchstart', enableAudio);
+      window.removeEventListener('keydown', enableAudio);
+    };
+    window.addEventListener('click', enableAudio, { passive: true });
+    window.addEventListener('touchstart', enableAudio, { passive: true });
+    window.addEventListener('keydown', enableAudio, { passive: true });
 
     // Safety timeout: If video stalls or finishes, reveal web
     const timer = setTimeout(() => {
@@ -39,6 +60,8 @@ export default function IntroVideoPreloader({ onFinish }) {
       document.body.style.overflow = originalOverflow;
       clearTimeout(timer);
       window.removeEventListener('keydown', handleKeyDown);
+      window.removeEventListener('click', enableAudio);
+      window.removeEventListener('touchstart', enableAudio);
     };
   }, []);
 
@@ -62,12 +85,11 @@ export default function IntroVideoPreloader({ onFinish }) {
           }}
           className="fixed inset-0 z-[99999] w-screen h-screen bg-white overflow-hidden select-none flex items-center justify-center m-0 p-0"
         >
-          {/* Fullscreen Video without any margins, borders, or drop shadows */}
+          {/* Fullscreen Video with volume auto ON */}
           <video
             ref={videoRef}
             src="/videos/trackolab-intro.mp4"
             autoPlay
-            muted
             playsInline
             preload="auto"
             onEnded={handleComplete}
