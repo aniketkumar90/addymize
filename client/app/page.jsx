@@ -18,6 +18,7 @@ import DemoModal from '@/components/DemoModal';
 import BackgroundGlow from '@/components/BackgroundGlow';
 import FloatingContactButtons from '@/components/FloatingContactButtons';
 import StickySocialBar from '@/components/StickySocialBar';
+import IntroVideoPreloader from '@/components/IntroVideoPreloader';
 
 export default function Home() {
   const [demoModalOpen, setDemoModalOpen] = useState(false);
@@ -31,6 +32,9 @@ export default function Home() {
 
   return (
     <div className="min-h-screen bg-[#073e4a] text-slate-100 w-full overflow-x-hidden selection:bg-amber-400 selection:text-black relative">
+      {/* Cinematic Intro Video Preloader (Plays on site load like TechSnitch) */}
+      <IntroVideoPreloader />
+
       {/* Smooth Ambient Background Glow matching reference image */}
       <BackgroundGlow />
 
